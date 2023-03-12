@@ -1,0 +1,23 @@
+plugin:
+  dp-secrets:
+    shortCut: Shift-S
+    confirm: false
+    description: "Secrets"
+    scopes:
+      - deploy
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl get secrets -n $NAMESPACE $NAME -o json | jq '{name: .metadata.name,data: .data|map_values(@base64d)}' | fx"
+  dp-config:
+    shortCut: Shift-C
+    confirm: false
+    description: "ConfigMap"
+    scopes:
+      - deploy
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl get configmaps -n $NAMESPACE $NAME -o json | fx"
