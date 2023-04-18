@@ -9,7 +9,7 @@ plugin:
     background: false
     args:
       - -c
-      - "kubectl --context $CONTEXT get secrets -n $NAMESPACE $NAME -o json | jq '{name: .metadata.name,data: .data|map_values(@base64d)}' | fx"
+      - "kubectl --context $CONTEXT get secrets -n $NAMESPACE $NAME -o json | jq '{name: .metadata.name,data: .data|map_values(@base64d)}' | view -"
   dp-config:
     shortCut: Shift-C
     confirm: false
@@ -20,4 +20,4 @@ plugin:
     background: false
     args:
       - -c
-      - "kubectl --context $CONTEXT get configmaps -n $NAMESPACE $NAME -o json | fx"
+      - "kubectl --context $CONTEXT get configmaps -n $NAMESPACE $NAME -o json | view -"
