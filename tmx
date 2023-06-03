@@ -1,0 +1,30 @@
+#!/bin/bash
+
+cfg=$(cat "~/.config/tmux/${1:-profile}.json")
+
+session_count=$(echo $cfg | jq '.sessions | length')
+for (( i=0; i<$session_count; i++ ))
+do
+  session_name=$(echo $cfg | jq -r ".sessions[$i].name")
+  tmux new-session -d -s $session_name
+
+  window_count=$(echo $cfg | jq ".sessions[$i].windows | length")
+  for (( j=0; j<$window_count; j++ ))
+  do
+    window_name=$(echo $cfg | jq -r ".sessions[$i].windows[$j].name")
+    window_dir=$(echo $cfg | jq -r ".sessions[$i].windows[$j].dir")
+    window_cmd=$(echo $cfg | jq -r ".sessions[$i].windows[$j].cmd")
+
+    if [ $j -eq 0 ]; then
+      tmux rename-window -t=$session_name:1 $window_name
+    else
+      tmux new-window -t $session_name -n $window_name
+    fi
+
+    if [ "$window_cmd" != "-" ]; then
+      tmux send-keys -t=$session_name:$window_name "cd $window_dir && $window_cmd" Enter
+    else
+      tmux send-keys -t=$session_name:$window_name "cd $window_dir" Enter
+    fi
+  done
+done
