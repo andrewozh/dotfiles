@@ -61,7 +61,7 @@
         {
           "name": "vim",
           "dir": "~/dev/intento/_svc/",
-          "cmd": "-"
+          "cmd": "nvim"
         }
       ]
     }
