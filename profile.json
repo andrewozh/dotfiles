@@ -52,6 +52,11 @@
           "name": "ansible",
           "dir": "~/dev/intento/intento-deploy/",
           "cmd": "-"
+        },
+        {
+          "name": "aws",
+          "dir": "~",
+          "cmd": "-"
         }
       ]
     },
