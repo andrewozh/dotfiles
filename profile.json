@@ -69,6 +69,16 @@
           "cmd": "nvim"
         }
       ]
+    },
+    {
+      "name": "other",
+      "windows": [
+        {
+          "name": "vim",
+          "dir": "~/dev/bin/",
+          "cmd": "nvim"
+        }
+      ]
     }
   ]
 }
