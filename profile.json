@@ -27,6 +27,11 @@
           "name": "amadeus-prod",
           "dir": "~",
           "cmd": "k9s -n api -c dp --context amadeus-prod"
+        },
+        {
+          "name": "shared-preprod",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context shared-preprod"
         }
       ]
     },
