@@ -32,6 +32,11 @@
           "name": "shared-preprod",
           "dir": "~",
           "cmd": "k9s -n api -c dp --context shared-preprod"
+        },
+        {
+          "name": "shared-prod",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context shared-prod"
         }
       ]
     },
