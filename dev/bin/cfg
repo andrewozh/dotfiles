@@ -1,0 +1,27 @@
+#!/bin/bash
+
+BARE_REPO=$HOME/.dotfiles
+TREE=$HOME
+GIT_OPTS="--git-dir=$BARE_REPO --work-tree=$TREE"
+
+function help {
+cat <<EOF
+Usage: cfg <option>
+  Options:
+  <no option>    -- Show status of the repository in lazygit
+  add|a          -- Add files to the repository
+  add-dir|ad     -- Add directories to the repository
+  help|h         -- Show this help message
+
+Requirements: git lazygit fzf
+EOF
+}
+
+case $1 in
+  "") lazygit $GIT_OPTS ;;
+  add|a) git $GIT_OPTS add -f $(find . -type f 2>/dev/null | fzf) ;;
+  add-dir|ad) git $GIT_OPTS add -f $(find . -type d 2>/dev/null | fzf) ;;
+  help|h) help ;;
+  *) git $GIT_OPTS $@ || help ;;
+esac
+
