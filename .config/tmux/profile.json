@@ -1,0 +1,95 @@
+{
+  "sessions": [
+    {
+      "name": "k9s",
+      "windows": [
+        {
+          "name": "intento-stage",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context intento-stage"
+        },
+        {
+          "name": "intento-preprod",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context intento-preprod"
+        },
+        {
+          "name": "intento-prod",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context intento-prod"
+        },
+        {
+          "name": "amadeus-preprod",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context amadeus-preprod"
+        },
+        {
+          "name": "amadeus-prod",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context amadeus-prod"
+        },
+        {
+          "name": "shared-preprod",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context shared-preprod"
+        },
+        {
+          "name": "shared-prod",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context shared-prod"
+        }
+      ]
+    },
+    {
+      "name": "infra",
+      "windows": [
+        {
+          "name": "vim",
+          "dir": "~/dev/intento/",
+          "cmd": "nvim"
+        },
+        {
+          "name": "terraform",
+          "dir": "~/dev/intento/intento-terraform/",
+          "cmd": "-"
+        },
+        {
+          "name": "helm",
+          "dir": "~/dev/intento/helm-charts/",
+          "cmd": "-"
+        },
+        {
+          "name": "ansible",
+          "dir": "~/dev/intento/intento-deploy/",
+          "cmd": "-"
+        },
+        {
+          "name": "aws",
+          "dir": "~",
+          "cmd": "-"
+        }
+      ]
+    },
+    {
+      "name": "svc",
+      "windows": [
+        {
+          "name": "vim",
+          "dir": "~/dev/intento/_svc/",
+          "cmd": "nvim"
+        }
+      ]
+    },
+    {
+      "name": "other",
+      "windows": [
+        {
+          "name": "vim",
+          "dir": "~/dev/bin/",
+          "cmd": "nvim"
+        }
+      ]
+    }
+  ]
+}
+
