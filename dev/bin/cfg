@@ -12,6 +12,7 @@ Usage: cfg <option>
   add|a          -- Add files to the repository
   add-dir|ad     -- Add directories to the repository
   help|h         -- Show this help message
+  <option>       -- Run git with the given option
 
 Requirements: git lazygit fzf
 EOF
