@@ -1,0 +1,44 @@
+main:
+  altview2vertical: '[{"col1":0,"col2":2,"adjust":7}]'
+  color-tsharks: ['/opt/homebrew/bin/tshark']
+  conv-absolute-time: false
+  dark-mode: true
+  last-used-tshark: '/opt/homebrew/bin/tshark'
+  lastupdate: '2023-06-03 14:52:41.934537 +0300 +03 m=+0.606948751'
+  layout: 'altview2'
+  mainview: '[{"col1":2,"col2":6,"adjust":-5},{"col1":4,"col2":6,"adjust":7}]'
+  packet-colors: false
+  recent-filters: ['http', 'tcp.stream eq 1', 'tcp.stream eq 28', 'ttp', 'tcp.options.md5']
+  theme-truecolor: 'gruvbox'
+  validated-tsharks: ['/opt/homebrew/bin/tshark']
+
+palette:
+  gruvbox:
+    bg: 282828
+    fg: ebdbb2
+
+maincolors:
+  bg: gruvbox.bg
+  fg: gruvbox.fg
+  contentview: d3869b
+  title: b8bb26
+  status: fe8019
+  status_focused: b48ead
+  subview: 689d6a
+  filter: 83a598
+  log_error: fb4934
+  log_warning: fabd2f
+  log_info: 83a598
+
+layerscolors:
+  bg: gruvbox.bg
+  fg: gruvbox.fg
+  contentview: ebdbb2
+  title: b8bb26
+  status: fe8019
+  status_focused: b48ead
+  subview: 689d6a
+  filter: 83a598
+  log_error: fb4934
+  log_warning: fabd2f
+  log_info: 83a598
