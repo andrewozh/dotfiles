@@ -1,2 +1,9 @@
 *
-.config/tmux/plugins/*
+
+!.zsh/
+!.config/tmux/
+!.config/k9s/
+!.config/termshark/
+
+.zsh/plugins/
+.config/tmux/plugins/
