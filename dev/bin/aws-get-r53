@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function complete {
+  cat <<'EOF'
+#compdef aws-get-r53
+_aws_get_r53() {
+  local -a records
+  local expl
+  if ((CURRENT == 2)); then
+    local profiles=("intento" "amadeus" "shared-euc1")
+    _wanted profiles expl 'profile name' compadd -a profiles
+  elif ((CURRENT == 3)); then
+    local cache_dir="${HOME}/.cache/aws-r53"
+    local cache_file="${cache_dir}/${words[2]}.cache"
+    if [[ -f "${cache_file}" ]]; then
+      records=("${(@f)$(cat "${cache_file}")}")
+    else
+      local hosted_zones=$(aws --profile "${words[2]}" route53 list-hosted-zones --query 'HostedZones[*].Id' --output text | tr '\t' '\n' | tr ' ' '\n')
+      for hosted_zone in "${(@f)hosted_zones}"; do
+        local zone_records=$(aws --profile "${words[2]}" route53 list-resource-record-sets --hosted-zone-id "${hosted_zone}" --query 'ResourceRecordSets[*].Name' --output text | tr '\t' '\n' | tr ' ' '\n')
+        records+=("${(@f)zone_records}")
+      done
+      mkdir -p "${cache_dir}"
+      echo "${records}" > "${cache_file}"
+    fi
+    _wanted records expl 'record name' compadd -a records
+  fi
+  return 0
+}
+compdef _aws_get_r53 aws-get-r53
+EOF
+  exit 0
+}
+
+case $1 in
+  complete) complete ;;
+esac
+
+RECORD=`aws --profile $1 route53 list-resource-record-sets --hosted-zone-id "$2" --query "ResourceRecordSets[?Name=='$3'].ResourceRecords[0].Value" --output text`
+echo $RECORD | jq 2>/dev/null || echo $RECORD
+
