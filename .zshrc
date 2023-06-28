@@ -11,7 +11,6 @@ zstyle ':omz:update' mode auto
 plugins=(git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
-
 alias tx='tmux'
 alias tf='terraform'
 alias tfw="f() { terraform workspace list | sed 's/* //' | tr -d ' ' | fzf -q \${1} -1 | xargs terraform workspace select; }; f"
@@ -28,21 +27,11 @@ zsh_add_path "$JAVA_HOME"
 zsh_add_path "$HOME/dev/bin"
 zsh_add_path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || zsh_add_path "$PYENV_ROOT/bin"
-
-if which pyenv-virtualenv-init > /dev/null; then
-   eval "$(pyenv init -)";
-   eval "$(pyenv virtualenv-init -)"
-fi
-
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-
+zsh_add_config fzf-zsh-completion
+zsh_add_config direnv
 
 export FX_THEME=3
 export FX_SHOW_SIZE=true
-
 
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.config/tmux/plugins/
 

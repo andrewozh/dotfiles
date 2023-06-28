@@ -12,4 +12,4 @@ function zsh_include {
 }
 
 zsh_include $ZSH_FUNCTION_DIR/*
-zsh_include $ZSH_CONFIG_DIR/*
+zsh_include $ZSH_CONFIG_DIR/*.auto.zsh
