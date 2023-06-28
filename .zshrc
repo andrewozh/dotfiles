@@ -37,7 +37,7 @@ export TMUX_PLUGIN_MANAGER_PATH=$HOME/.config/tmux/plugins/
 
 eval "$(direnv hook zsh)"
 eval "$(aws-get-ssm complete)"
-eval "$(aws-get-r53 complete)"
+eval "$(aws-r53-get complete)"
 
 source <(kubectl completion zsh)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
