@@ -1,0 +1,9 @@
+#!/bin/bash
+
+aws --profile $1 ssm put-parameter \
+    --name "$2" \
+    --value "$3" \
+    --type "SecureString" \
+    --tier Standard \
+    --overwrite
+
