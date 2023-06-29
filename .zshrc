@@ -36,7 +36,7 @@ export FX_SHOW_SIZE=true
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.config/tmux/plugins/
 
 eval "$(direnv hook zsh)"
-eval "$(aws-get-ssm complete)"
+eval "$(aws-ssm-get complete)"
 eval "$(aws-r53-get complete)"
 
 source <(kubectl completion zsh)
