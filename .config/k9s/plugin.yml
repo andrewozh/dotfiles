@@ -10,7 +10,7 @@ plugin:
     background: false
     args:
       - -c
-      - "kubectl --context $CONTEXT get secrets -n $NAMESPACE $NAME -o json | jq '{name: .metadata.name,data: .data|map_values(@base64d)}' | view -"
+      - "kubectl --context $CONTEXT get secrets -n $NAMESPACE $NAME -o json | jq '{name: .metadata.name,data: .data|map_values(@base64d)}' | nvim -R -"
   view-configmap:
     shortCut: Shift-C
     confirm: false
@@ -22,4 +22,4 @@ plugin:
     background: false
     args:
       - -c
-      - "kubectl --context $CONTEXT get configmaps -n $NAMESPACE $NAME -o json | view -"
+      - "kubectl --context $CONTEXT get configmaps -n $NAMESPACE $NAME -o json | nvim -R -"
