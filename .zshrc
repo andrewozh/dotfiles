@@ -25,6 +25,7 @@ zsh_add_path "/opt/homebrew/sbin"
 zsh_add_path "/opt/homebrew/opt/openjdk/bin"
 zsh_add_path "$JAVA_HOME"
 zsh_add_path "$HOME/dev/bin"
+zsh_add_path "$HOME/.local/bin"
 zsh_add_path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 
 zsh_add_config fzf-zsh-completion

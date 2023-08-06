@@ -81,6 +81,16 @@
       ]
     },
     {
+      "name": "gpt",
+      "windows": [
+        {
+          "name": "elia",
+          "dir": "~",
+          "cmd": "elia"
+        }
+      ]
+    },
+    {
       "name": "other",
       "windows": [
         {
