@@ -13,7 +13,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias tx='tmux'
 alias tf='terraform'
-alias tfw="f() { terraform workspace list | sed 's/* //' | tr -d ' ' | fzf -q \${1} -1 | xargs terraform workspace select; }; f"
+alias tfw="f() { terraform workspace list | sed 's/* //' | tr -d ' ' | fzf -1 -q \${1} | xargs terraform workspace select; }; f"
 alias sniff="f() { ssh ansible@\$1 \"sudo /usr/sbin/tcpdump -U -w - -i any not port 22 \$2\" | termshark -i - }; f"
 alias kctx="f() { kubectl config get-contexts -o name | fzf -1 -q \"\${1}\" | xargs kubectl config use-context }; f"
 alias helm-drift="f() { helm get manifest -n api \$1 | kubectl diff -n api -f - }; f"
