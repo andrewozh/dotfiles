@@ -37,6 +37,11 @@
           "name": "shared-prod",
           "dir": "~",
           "cmd": "k9s -n api -c dp --context shared-prod"
+        },
+        {
+          "name": "devops",
+          "dir": "~",
+          "cmd": "k9s -n api -c dp --context intento-devops"
         }
       ]
     },
@@ -81,12 +86,22 @@
       ]
     },
     {
-      "name": "gpt",
+      "name": "localstack",
       "windows": [
         {
-          "name": "elia",
-          "dir": "~",
-          "cmd": "elia"
+          "name": "vim",
+          "dir": "~/dev/localstack-infra/",
+          "cmd": "nvim"
+        },
+        {
+          "name": "localstack",
+          "dir": "~/dev/localstack-infra/",
+          "cmd": "-"
+        },
+        {
+          "name": "terragrunt",
+          "dir": "~/dev/localstack-infra/",
+          "cmd": "-"
         }
       ]
     },
