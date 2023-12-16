@@ -21,10 +21,13 @@ alias nvdiff="f() { nvim -d -c \"vnew\" -c \"diffsplit\" -c \"wincmd q\" -c \"wi
 alias act="act \
   --container-architecture linux/amd64 \
   -P self-hosted=nektos/act-environments-ubuntu:18.04 \
+  -P k8s-runners=ghcr.io/actions/actions-runner:latest \
   -P github.com/intento/intento-github-actions=~andrewozhegov/dev/intento/intento-github-actions \
   --env-file ~/.config/act/env \
   --var-file ~/.config/act/vars \
-  --secret-file ~/.config/act/secrets"
+  --secret-file ~/.config/act/secrets \
+  -s GITHUB_TOKEN=$GITHUB_TOKEN"
+alias awsl="aws --profile localstack"
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
 
