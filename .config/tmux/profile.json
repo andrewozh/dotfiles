@@ -86,23 +86,13 @@
       ]
     },
     {
-      "name": "localstack",
+      "name": "notes",
       "windows": [
         {
           "name": "vim",
-          "dir": "~/dev/localstack-infra/",
+          "dir": "~/dev/notes/",
           "cmd": "nvim"
         },
-        {
-          "name": "localstack",
-          "dir": "~/dev/localstack-infra/",
-          "cmd": "-"
-        },
-        {
-          "name": "terragrunt",
-          "dir": "~/dev/localstack-infra/",
-          "cmd": "-"
-        }
       ]
     },
     {
