@@ -1,0 +1,47 @@
+plugins:
+  view-secret:
+    shortCut: Shift-S
+    confirm: false
+    description: "Secret"
+    scopes:
+      - deploy
+      - sts
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl --context $CONTEXT get secrets -n $NAMESPACE $NAME -o json | jq '{name: .metadata.name,data: .data|map_values(@base64d)}' | nvim -R -"
+  view-configmap:
+    shortCut: Shift-C
+    confirm: false
+    description: "ConfigMap"
+    scopes:
+      - deploy
+      - sts
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl --context $CONTEXT get configmaps -n $NAMESPACE $NAME -o json | nvim -R -"
+  termshark:
+    shortCut: Shift-W
+    description: "Termshark"
+    scopes:
+    - po
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl --context $CONTEXT exec -n $NAMESPACE -it $COL-NAME -- sh -c \"[ ! -f /tmp/tcpdump ] && curl -LO https://github.com/mzpqnxow/tcpdump-x86_64/raw/master/tcpdump && mv tcpdump /tmp && chmod +x /tmp/tcpdump ; /tmp/tcpdump -U -w - -i any not port 22\" | termshark -i -"
+  logs:
+    shortCut: Shift-L
+    confirm: false
+    description: "Logs"
+    scopes:
+      - po
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl --context $CONTEXT logs -f -n $NAMESPACE $NAME | nvim -R -"
+

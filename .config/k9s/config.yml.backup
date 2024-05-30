@@ -1,4 +1,5 @@
 k9s:
+  liveViewAutoRefresh: false
   refreshRate: 1
   maxConnRetry: 5
   enableMouse: false
@@ -16,6 +17,8 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
+  currentContext: intento-devops
+  currentCluster: arn:aws:eks:us-west-2:548235256840:cluster/intento-eks-k8s-devops
   thresholds:
     cpu:
       critical: 80
@@ -23,3 +26,4 @@ k9s:
     memory:
       critical: 80
       warn: 60
+  screenDumpDir: /var/folders/sh/55km543569n6fsqv4r0jk6hm0000gn/T/k9s-screens-andrewozhegov
