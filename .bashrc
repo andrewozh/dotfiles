@@ -1,0 +1,80 @@
+#
+#      /$$                           /$$
+#     | $$                          | $$
+#     | $$$$$$$   /$$$$$$   /$$$$$$$| $$$$$$$   /$$$$$$   /$$$$$$$
+#     | $$__  $$ |____  $$ /$$_____/| $$__  $$ /$$__  $$ /$$_____/
+#     | $$  \ $$  /$$$$$$$|  $$$$$$ | $$  \ $$| $$  \__/| $$
+#     | $$  | $$ /$$__  $$ \____  $$| $$  | $$| $$      | $$
+#  /$$| $$$$$$$/|  $$$$$$$ /$$$$$$$/| $$  | $$| $$      |  $$$$$$$
+# |__/|_______/  \_______/|_______/ |__/  |__/|__/       \_______/
+#
+
+# TODO:
+#
+# - XDG directories
+# - keep zsh history
+# - bash syntax highlighting
+# - fzf completions for bash
+# - add bash completions for aws-tools
+
+set -o vi
+
+export VISUAL=nvim
+export EDITOR=nvim
+# export BROWSER="firefox"
+
+export JAVA_HOME="$(/usr/libexec/java_home)"
+export TMUX_PLUGIN_MANAGER_PATH=$HOME/.config/tmux/plugins/
+
+export FX_THEME=3
+export FX_SHOW_SIZE=true
+
+function add_path() { [ -d "$1" ] && export PATH="$1:$PATH" ; }
+add_path "/opt/homebrew/bin"
+add_path "/opt/homebrew/sbin"
+add_path "/opt/homebrew/opt/openjdk/bin"
+add_path "$JAVA_HOME"
+add_path "$HOME/dev/bin"
+add_path "$HOME/dev/notes/bin"
+add_path "$HOME/.local/bin"
+add_path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || add_path "$PYENV_ROOT/bin"
+
+# --------------------- Aliases ---------------------
+
+alias tx='tmux'
+alias tf='terraform'
+alias tfw="f() { terraform workspace list | sed 's/* //' | tr -d ' ' | fzf -1 -q \"\${1}\" | xargs terraform workspace select; }; f"
+alias sniff="f() { ssh ansible@\$1 \"sudo /usr/sbin/tcpdump -U -w - -i any not port 22 \$2\" | termshark -i - }; f"
+alias kctx="f() { kubectl config get-contexts -o name | fzf -1 -q \"\${1}\" | xargs kubectl config use-context }; f"
+alias helm-drift="f() { helm get manifest -n api \$1 | kubectl diff -n api -f - }; f"
+alias nvdiff="f() { nvim -d -c \"vnew\" -c \"diffsplit\" -c \"wincmd q\" -c \"wincmd h\" -c \"diffsplit\" -c \"wincmd q\" }; f"
+alias act="act \
+  --container-architecture linux/amd64 \
+  -P self-hosted=nektos/act-environments-ubuntu:18.04 \
+  -P k8s-runners=ghcr.io/actions/actions-runner:latest \
+  --env-file ~/.config/act/env \
+  --var-file ~/.config/act/vars \
+  --secret-file ~/.config/act/secrets \
+  -s GITHUB_TOKEN=$GITHUB_TOKEN"
+alias awsl="aws --profile localstack"
+
+# --------------------- Configs ---------------------
+
+eval "$(starship init bash)"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# zsh_add_config fzf-zsh-completion
+# zsh_add_config direnv
+eval "$(pyenv init -)"
+
+# --------------------- Completions ---------------------
+
+eval "$(direnv hook bash)"
+eval "$(localstack completion bash)"
+eval "$(minikube completion bash)"
+# eval "$(aws-ssm-get completion bash)"
+# eval "$(aws-r53-get completion bash)"
+source <(kubectl completion bash)
+
