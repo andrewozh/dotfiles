@@ -1,0 +1,33 @@
+
+format = """$directory$git_branch$fill$aws$kubernetes$terraform$python$direnv
+$character"""
+
+[character]
+success_symbol = '[\$](bold yellow) '
+error_symbol = '[\$](bold red) '
+
+[aws]
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style) '
+style = 'bold #FF9900'
+symbol = '󰸏 '
+
+[terraform]
+format = '[$symbol$workspace]($style) '
+style = 'bold #844FBA'
+symbol = ' '
+
+[kubernetes]
+format = '[$symbol$context( \($namespace\))]($style) '
+disabled = false
+style = 'bold #326CE5'
+symbol = '󱃾 '
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
+style = 'bold #4B8BBE'
+symbol = ' '
+
+[direnv]
+disabled = false
+style = 'bold yellow'
+symbol = '󰅨 '
