@@ -22,7 +22,6 @@ alias act="act \
   --container-architecture linux/amd64 \
   -P self-hosted=nektos/act-environments-ubuntu:18.04 \
   -P k8s-runners=ghcr.io/actions/actions-runner:latest \
-  -P github.com/intento/intento-github-actions=~andrewozhegov/dev/intento/intento-github-actions \
   --env-file ~/.config/act/env \
   --var-file ~/.config/act/vars \
   --secret-file ~/.config/act/secrets \
@@ -36,6 +35,7 @@ zsh_add_path "/opt/homebrew/sbin"
 zsh_add_path "/opt/homebrew/opt/openjdk/bin"
 zsh_add_path "$JAVA_HOME"
 zsh_add_path "$HOME/dev/bin"
+zsh_add_path "$HOME/dev/notes/bin"
 zsh_add_path "$HOME/.local/bin"
 zsh_add_path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 
@@ -50,6 +50,12 @@ export TMUX_PLUGIN_MANAGER_PATH=$HOME/.config/tmux/plugins/
 eval "$(direnv hook zsh)"
 eval "$(aws-ssm-get complete)"
 eval "$(aws-r53-get complete)"
+eval "$(localstack completion zsh)"
+eval "$(minikube completion zsh)"
+
+
+autoload -U compinit
+compinit -i
 
 source <(kubectl completion zsh)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
