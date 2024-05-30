@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function complete {
+function completion_zsh {
   cat <<'EOF'
 #compdef aws-ssm-get
 _aws_ssm_get() {
@@ -28,8 +28,47 @@ EOF
   exit 0
 }
 
+function completion_bash {
+  cat <<'EOF'
+_aws_ssm_get() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    if [[ ${COMP_CWORD} == 1 ]]; then
+        local profiles=$(aws configure list-profiles)
+        COMPREPLY=( $(compgen -W "${profiles}" -- ${cur}) )
+        return 0
+    fi
+    if [[ ${COMP_CWORD} == 2 ]]; then
+        local cache_dir="${HOME}/.cache/aws-ssm"
+        local cache_file="${cache_dir}/${prev}.cache"
+        local params
+        if [[ -f "${cache_file}" ]]; then
+            params=$(cat "${cache_file}")
+        else
+            params=$(aws --profile "${prev}" ssm describe-parameters --query 'Parameters[*].Name' --output text | tr '\t' '\n' | tr ' ' '\n')
+            mkdir -p "${cache_dir}"
+            echo "${params}" > "${cache_file}"
+        fi
+        COMPREPLY=( $(compgen -W "${params}" -- ${cur}) )
+        return 0
+    fi
+}
+complete -F _aws_ssm_get aws-ssm-get
+EOF
+  exit 0
+}
+
 case $1 in
-  complete) complete ;;
+  complete) completion_zsh ;;
+  completion)
+    case $2 in
+      zsh) completion_zsh ;;
+      bash) completion_bash ;; 
+    esac
+    shift
+  ;;
 esac
 
 PARAM=`aws --profile $1 ssm get-parameter --name "$2" --with-decryption | jq -r .Parameter.Value`

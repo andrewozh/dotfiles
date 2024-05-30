@@ -15,13 +15,15 @@
 # - keep zsh history
 # - bash syntax highlighting
 # - fzf completions for bash
-# - add bash completions for aws-tools
 
 set -o vi
 
 export VISUAL=nvim
 export EDITOR=nvim
 # export BROWSER="firefox"
+
+export HISTSIZE=25000
+export HISTCONTROL=ignorespace
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.config/tmux/plugins/
@@ -81,7 +83,7 @@ fi
 eval "$(direnv hook bash)"
 eval "$(localstack completion bash)"
 eval "$(minikube completion bash)"
-# eval "$(aws-ssm-get completion bash)"
-# eval "$(aws-r53-get completion bash)"
 source <(kubectl completion bash)
+eval "$(aws-ssm-get completion bash)"
+eval "$(aws-r53-get completion bash)"
 

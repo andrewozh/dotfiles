@@ -47,8 +47,77 @@ EOF
   exit 0
 }
 
+function completion_bash {
+  cat <<'EOF'
+_aws_r53_get() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    if [[ ${COMP_CWORD} == 1 ]]; then
+        local profiles=$(aws configure list-profiles)
+        COMPREPLY=( $(compgen -W "${profiles}" -- ${cur}) )
+        return 0
+    fi
+
+    if [[ ${COMP_CWORD} == 2 ]]; then
+        local cache_dir="${HOME}/.cache/aws-r53"
+        local zones_cache_file="${cache_dir}/${prev}_zones.cache"
+        local zones
+
+        if [[ -f "${zones_cache_file}" ]]; then
+            zones=$(cat "${zones_cache_file}")
+        else
+            local hosted_zones=$(aws --profile "${prev}" route53 list-hosted-zones --query 'HostedZones[*].[Id,Name,Config.PrivateZone]' --output text)
+            while IFS=$'\n' read -r hosted_zone; do
+                local zone_id=$(echo "${hosted_zone}" | cut -f1 | tr -d '/hostedzone/')
+                local zone_name=$(echo "${hosted_zone}" | cut -f2)
+                local zone_type=$([[ "$(echo "${hosted_zone}" | cut -f3)" == "True" ]] && echo "private" || echo "public")
+                zones+="${zone_id}_${zone_name%.}_${zone_type} "
+            done <<< "${hosted_zones}"
+            mkdir -p "${cache_dir}"
+            echo "${zones}" > "${zones_cache_file}"
+        fi
+
+        COMPREPLY=( $(compgen -W "${zones}" -- ${cur}) )
+        return 0
+    fi
+
+    if [[ ${COMP_CWORD} == 3 ]]; then
+        local cache_dir="${HOME}/.cache/aws-r53"
+        local zone_id=$(echo "${prev}" | cut -d'_' -f1)
+        local records_cache_file="${cache_dir}/${prev}.cache"
+        local records
+
+        if [[ -f "${records_cache_file}" ]]; then
+            records=$(cat "${records_cache_file}")
+        else
+            local zone_records=$(aws --profile "${COMP_WORDS[1]}" route53 list-resource-record-sets --hosted-zone-id "${zone_id}" --query 'ResourceRecordSets[*].Name' --output text | tr '\t' '\n')
+            records="${zone_records}"
+            mkdir -p "${cache_dir}"
+            echo "${records}" > "${records_cache_file}"
+        fi
+
+        COMPREPLY=( $(compgen -W "${records}" -- ${cur}) )
+        return 0
+    fi
+}
+complete -F _aws_r53_get aws-r53-get
+EOF
+  exit 0
+}
+
+
 case $1 in
-  complete) complete ;;
+  complete) completion_zsh ;;
+  completion)
+    case $2 in
+      zsh) completion_zsh ;;
+      bash) completion_bash ;; 
+    esac
+    shift
+  ;;
 esac
 
 RECORD=`aws --profile "${1}" route53 list-resource-record-sets --hosted-zone-id "${2%%_*}" --query "ResourceRecordSets[?Name=='$3'].ResourceRecords[0].Value" --output text`
