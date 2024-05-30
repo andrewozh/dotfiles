@@ -39,9 +39,6 @@ add_path "$HOME/dev/notes/bin"
 add_path "$HOME/.local/bin"
 add_path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || add_path "$PYENV_ROOT/bin"
-
 # --------------------- Aliases ---------------------
 
 alias tx='tmux'
@@ -66,8 +63,18 @@ alias awsl="aws --profile localstack"
 eval "$(starship init bash)"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # zsh_add_config fzf-zsh-completion
-# zsh_add_config direnv
-eval "$(pyenv init -)"
+
+# --------------------- Pyenv ------------------------
+
+export PYENV_ROOT="$HOME/.pyenv"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES # for ansible
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+command -v pyenv >/dev/null || add_path "$PYENV_ROOT/bin"
+if which pyenv-virtualenv-init > /dev/null; then
+   eval "$(pyenv init -)";
+   eval "$(pyenv virtualenv-init -)"
+fi
 
 # --------------------- Completions ---------------------
 
