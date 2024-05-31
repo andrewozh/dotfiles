@@ -1,15 +1,19 @@
 #!/bin/bash
+# set -x
 
 cfg=$(cat "$HOME/.config/tmux/${1:-profile}.json")
 
 session_count=$(echo $cfg | jq '.sessions | length')
-for (( i=0; i < $session_count; i++ ))
+
+# for (( i=0; i < $session_count; i++ ))
+for i in $(seq 0 $(($session_count-1)))
 do
   session_name=$(echo $cfg | jq -r ".sessions[$i].name")
   tmux has-session -t $session_name || tmux new-session -d -s $session_name
 
   window_count=$(echo $cfg | jq ".sessions[$i].windows | length")
-  for (( j=0; j < $window_count; j++ ))
+  # for (( j=0; j < $window_count; j++ ))
+  for j in $(seq 0 $(($window_count-1)))
   do
     window_name=$(echo $cfg | jq -r ".sessions[$i].windows[$j].name")
     window_dir=$(echo $cfg | jq -r ".sessions[$i].windows[$j].dir")
