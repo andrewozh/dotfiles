@@ -4,6 +4,9 @@
 
 # Colors (Gruvbox dark)
 
+[shell]
+program = "/bin/bash"
+
 # Default colors
 [colors.primary]
 # hard contrast background = = '#1d2021'
