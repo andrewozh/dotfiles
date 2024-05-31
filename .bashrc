@@ -14,7 +14,6 @@
 # - XDG directories
 # - keep zsh history
 # - bash syntax highlighting
-# - fzf completions for bash
 
 set -o vi
 
@@ -66,7 +65,8 @@ alias awsl="aws --profile localstack"
 
 eval "$(starship init bash)"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# zsh_add_config fzf-zsh-completion
+source $HOME/.fzf-bash-completion.sh
+bind -x '"\t": fzf_bash_completion'
 
 # --------------------- Pyenv ------------------------
 
@@ -84,7 +84,7 @@ fi
 
 eval "$(direnv hook bash)"
 # eval "$(localstack completion bash)"
-eval "$(minikube completion bash)"
+# eval "$(minikube completion bash)"
 source <(kubectl completion bash)
 eval "$(aws-ssm-get completion bash)"
 eval "$(aws-r53-get completion bash)"
