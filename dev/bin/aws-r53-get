@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function complete {
+function completion_zsh {
   cat <<'EOF'
 #compdef aws-r53-get
 _aws_r53_get() {
