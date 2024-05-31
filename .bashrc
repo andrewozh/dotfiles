@@ -41,6 +41,8 @@ add_path "$HOME/dev/notes/bin"
 add_path "$HOME/.local/bin"
 add_path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # --------------------- Aliases ---------------------
 
 alias tx='tmux'
@@ -81,7 +83,7 @@ fi
 # --------------------- Completions ---------------------
 
 eval "$(direnv hook bash)"
-eval "$(localstack completion bash)"
+# eval "$(localstack completion bash)"
 eval "$(minikube completion bash)"
 source <(kubectl completion bash)
 eval "$(aws-ssm-get completion bash)"
