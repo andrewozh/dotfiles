@@ -7,3 +7,4 @@ aliases:
   ro: rbac.authorization.k8s.io/v1/roles
   rb: rbac.authorization.k8s.io/v1/rolebindings
   np: networking.k8s.io/v1/networkpolicies
+  er: ephemeralrunners
