@@ -24,15 +24,15 @@ export EDITOR=nvim
 export HISTSIZE=25000
 export HISTCONTROL=ignorespace
 
-export JAVA_HOME="$(/usr/libexec/java_home)"
+#export JAVA_HOME="$(/usr/libexec/java_home)"
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.config/tmux/plugins/
 
 export FX_THEME=3
 export FX_SHOW_SIZE=true
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 function add_path() { [ -d "$1" ] && export PATH="$1:$PATH" ; }
-add_path "/opt/homebrew/bin"
-add_path "/opt/homebrew/sbin"
 add_path "/opt/homebrew/opt/openjdk/bin"
 add_path "$JAVA_HOME"
 add_path "$HOME/dev/bin"
