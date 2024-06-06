@@ -8,15 +8,10 @@ tap "kong/deck"
 tap "kreuzwerker/taps"
 tap "leg100/tap"
 tap "stefanprodan/tap"
-
 # Run your GitHub Actions locally
 brew "act", args: ["HEAD"]
 # GitOps Continuous Delivery for Kubernetes
 brew "argocd"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
-# Core application library for C
-brew "glib"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -25,16 +20,18 @@ brew "bash"
 brew "bat"
 # Collection of portable C++ source libraries
 brew "boost"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
+# Core application library for C
+brew "glib"
 # Console Matrix
 brew "cmatrix"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # Load/unload environment variables based on $PWD
 brew "direnv"
-# GNU Transport Layer Security (TLS) Library
-brew "gnutls"
-# C library SSHv1/SSHv2 client and server protocols
-brew "libssh"
+# Platform built on V8 to build network applications
+brew "node"
 # Terminal JSON viewer
 brew "fx"
 # Command-line fuzzy finder written in Go
@@ -47,12 +44,12 @@ brew "gcc"
 brew "git"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Development kit for the Java programming language
-brew "openjdk"
 # GNU grep, egrep and fgrep
 brew "grep"
 # Tool for glamorous shell scripts
@@ -81,20 +78,20 @@ brew "kubernetes-cli"
 brew "kubeseal"
 # Simple terminal UI for git commands
 brew "lazygit"
+# C library SSHv1/SSHv2 client and server protocols
+brew "libssh"
 # Next-gen compiler infrastructure
 brew "llvm"
-# Platform built on V8 to build network applications
-brew "node"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim", args: ["HEAD"]
+# Development kit for the Java programming language
+brew "openjdk"
 # SDK for building Kubernetes applications
 brew "operator-sdk"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Tool for managing OCI containers and pods
 brew "podman"
-# Generic machine emulator and virtualizer
-brew "qemu"
 # Alternative to docker-compose using podman
 brew "podman-compose"
 # Kubernetes cluster resource sanitizer
@@ -105,6 +102,8 @@ brew "postgresql@12"
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
+# Generic machine emulator and virtualizer
+brew "qemu"
 # File browser
 brew "ranger"
 # Persistent key-value database, with built-in net interface
@@ -151,9 +150,23 @@ brew "koekeishiya/formulae/yabai"
 brew "kreuzwerker/taps/m1-terraform-provider-helper"
 # Terminal user interface for terraform power users.
 brew "leg100/tap/pug"
+# Stand alone ad blocker
+cask "adguard"
 # GPU-accelerated terminal emulator
 cask "alacritty"
+# Developer targeted fonts with a high number of glyphs
+cask "font-hack-nerd-font"
+# Web browser
+cask "google-chrome"
+# Password manager application and digital vault
+cask "keeper-password-manager"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
 # Browse, manage, inspect containers and images
 cask "podman-desktop"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
+# Team communication and collaboration software
+cask "slack"
+# Music streaming service
+cask "spotify"
