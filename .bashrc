@@ -59,12 +59,15 @@ alias act="act \
   --var-file ~/.config/act/vars \
   --secret-file ~/.config/act/secrets \
   -s GITHUB_TOKEN=$GITHUB_TOKEN"
-alias awsl="aws --profile localstack"
+# alias awsl="aws --profile localstack"
+alias c='clear'
+alias e='exit'
 
 # --------------------- Configs ---------------------
 
 eval "$(starship init bash)"
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+eval "$(fzf --bash)"
 source $HOME/.fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 
