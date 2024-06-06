@@ -45,10 +45,11 @@ family = "Hack Nerd Font"
 
 [window]
 decorations = "none"
+dimensions = { columns = 184, lines =  49 }
+position = { x = 20, y = 20 }
+dynamic_padding = true
+padding = { x = 2, y = 2 }
+startup_mode = "Maximized"
 
 [terminal]
 osc52 = "CopyPaste"
-
-[window.padding]
-x = 1
-y = 1
