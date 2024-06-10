@@ -26,6 +26,8 @@ brew "python@3.12"
 brew "glib"
 # Console Matrix
 brew "cmatrix"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # Load/unload environment variables based on $PWD
