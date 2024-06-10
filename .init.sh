@@ -31,4 +31,19 @@ else
   exit 1
 fi
 
-echo Done! Logout required.
+echo Use k9s config
+rm -rf ~/Library/Application\ Support/k9s
+ln -s ~/.config/k9s ~/Library/Application\ Support/k9s
+
+ln -s "/Users/andrewozh/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes" ~/Notes
+
+cat<<EOF
+Software to install manually:
+
+* YTUntrap (AppStore)
+* OpenVPN Client
+* MacGPT
+* RadioGaga
+
+Done! Logout required.
+
