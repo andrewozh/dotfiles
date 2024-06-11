@@ -15,7 +15,7 @@
 # - keep zsh history
 # - bash syntax highlighting
 
-# set -o vi
+set -o vi
 
 export VISUAL=nvim
 export EDITOR=nvim
