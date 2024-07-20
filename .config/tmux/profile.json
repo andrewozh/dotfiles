@@ -90,17 +90,32 @@
       "windows": [
         {
           "name": "vim",
-          "dir": "~/dev/notes/",
+          "dir": "~/Notes/",
           "cmd": "nvim"
         }
       ]
     },
     {
-      "name": "other",
+      "name": "bin",
       "windows": [
         {
           "name": "vim",
           "dir": "~/dev/bin/",
+          "cmd": "nvim"
+        }
+      ]
+    },
+    {
+      "name": "homelab",
+      "windows": [
+        {
+          "name": "k9s",
+          "dir": "~",
+          "cmd": "k9s --context kind-kind"
+        },
+        {
+          "name": "vim",
+          "dir": "~/dev/homelab/",
           "cmd": "nvim"
         }
       ]
