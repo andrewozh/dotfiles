@@ -118,7 +118,7 @@ brew "sops"
 brew "source-highlight"
 # Cross-shell prompt for astronauts
 brew "starship"
-# Graphical network analyzer and capture tool
+# Network analyzer and capture tool - without graphical user interface
 brew "wireshark"
 # Terminal UI for tshark, inspired by Wireshark
 brew "termshark"
@@ -132,6 +132,8 @@ brew "tflint"
 brew "tfsec"
 # Terminal multiplexer
 brew "tmux"
+# CPU, RAM memory, and load monitor for use with tmux
+brew "tmux-mem-cpu-load"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Maintained ctags implementation
@@ -152,11 +154,8 @@ brew "koekeishiya/formulae/yabai"
 brew "kreuzwerker/taps/m1-terraform-provider-helper"
 # Terminal user interface for terraform power users.
 brew "leg100/tap/pug"
-# Stand alone ad blocker
-cask "adguard"
 # GPU-accelerated terminal emulator
 cask "alacritty"
-# Developer targeted fonts with a high number of glyphs
 cask "font-hack-nerd-font"
 # Web browser
 cask "google-chrome"
