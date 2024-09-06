@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo "Press Enter to continue..." ; read -
+echo "Press Enter to continue..." ; read
 echo "[$(date)] Recoreded BEFORE..."
-BEFORE=`aws-ssm-get "${1}" "${2}"`
+BEFORE=$(aws-ssm-get "${1}" "${2}")
 
-echo "Press Enter to continue..." ; read -
+echo "Press Enter to continue..." ; read
 echo "[$(date)] Recoreded AFTER..."
-AFTER=`aws-ssm-get "${1}" "${2}"`
+AFTER=$(aws-ssm-get "${1}" "${2}")
 
-diff <(echo $BEFORE) <(echo $AFTER)
+diff <(echo "$BEFORE") <(echo "$AFTER")
