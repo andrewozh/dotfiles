@@ -41,7 +41,7 @@ add_path "$HOME/.local/bin"
 add_path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 add_path "/opt/homebrew/opt/curl/bin"
 add_path "/opt/homebrew/opt/postgresql@12/bin"
-
+add_path "/Applications/Docker.app/Contents/Resources/bin"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # --------------------- Aliases ---------------------
