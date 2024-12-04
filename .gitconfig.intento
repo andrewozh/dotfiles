@@ -1,0 +1,5 @@
+[user]
+	name = Andrew Ozhegov
+	email = andrew.ozhegov@inten.to
+[credential]
+	helper = osxkeychain

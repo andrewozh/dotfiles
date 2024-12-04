@@ -3,3 +3,6 @@
 	email = andrew.ozhegov@gmail.com
 [credential]
 	helper = osxkeychain
+
+[includeIf "gitdir:~/dev/intento/"]
+  path = ~/.gitconfig.intento
