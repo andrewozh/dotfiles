@@ -54,18 +54,13 @@
           "cmd": "nvim"
         },
         {
-          "name": "terraform",
+          "name": "terragrunt",
           "dir": "~/dev/intento/intento-terraform/",
           "cmd": "-"
         },
         {
           "name": "helm",
           "dir": "~/dev/intento/helm-charts/",
-          "cmd": "-"
-        },
-        {
-          "name": "ansible",
-          "dir": "~/dev/intento/intento-deploy/",
           "cmd": "-"
         },
         {
