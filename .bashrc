@@ -70,6 +70,7 @@ alias e='exit'
 eval "$(starship init bash)"
 
 eval "$(fzf --bash)"
+# eval "$(atuin init bash)"
 source $HOME/.fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 
