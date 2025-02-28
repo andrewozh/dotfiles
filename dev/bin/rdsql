@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -x
+
+K_SECRET=${1:-"psql-creds-db-main"}
+
+function credentials {
+  local K_SECRET=$1
+  case $K_SECRET in
+    psql-creds-db-*)
+      export DB_DATABASE=postgres
+      while IFS=' =' read -r key value ; do
+        value=${value//\"/} # remove the double quotes around the value
+        case "$key" in
+          "host") export DB_HOST=$value ;;
+          "port") export DB_PORT=$value ;;
+          "user") export DB_USERNAME=$value ;;
+          "password") export DB_PASSWORD=$value ;;
+        esac
+      done < <(kubectl get secret -n crossplane $K_SECRET -o jsonpath="{.data}" | \
+        jq -r ".[\"creds.auto.tfvars\"]" | \
+        base64 --decode) ;;
+    *)
+      secret=$(kubectl get secret -n api $K_SECRET -o jsonpath="{.data}")
+      for key in $(echo $secret | jq -r 'keys[]'); do
+          value=$(echo $secret | jq -r ".[\"$key\"]" | base64 --decode)
+          export $key=$value
+      done ;;
+  esac
+}
+
+function pg_query {
+  local query="$1"
+  echo "(SU) -- $1"
+  PGPASSWORD=${DB_PASSWORD} psql \
+    -h ${DB_HOST} \
+    -p ${DB_PORT} \
+    -U ${DB_USERNAME} \
+    -d ${DB_DATABASE} --tuples-only -c "${query}"
+  unset PGPASSWORD
+}
+
+function login {
+  PGPASSWORD=${DB_PASSWORD} psql \
+    -h ${DB_HOST} \
+    -p ${DB_PORT} \
+    -U ${DB_USERNAME} \
+    -d ${DB_DATABASE}
+}
+
+
+credentials $K_SECRET
+login
