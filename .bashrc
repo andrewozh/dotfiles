@@ -94,4 +94,5 @@ eval "$(direnv hook bash)"
 source <(kubectl completion bash)
 eval "$(aws-ssm-get completion bash)"
 eval "$(aws-r53-get completion bash)"
+eval "$(rdsql completion bash)"
 

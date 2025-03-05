@@ -1,4 +1,42 @@
 #!/usr/bin/env bash
+
+# FIXME:
+# * custom namespaces for service secret
+
+function completion_bash {
+  cat <<'EOF'
+_rdsql() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    if [[ ${COMP_CWORD} == 1 ]]; then
+        local ctx="$(kubectl config current-context)"
+        local cache_dir="${HOME}/.cache/rdsql"
+        local cache_file="${cache_dir}/${ctx}.cache"
+        local params
+        if [[ -f "${cache_file}" ]]; then
+            params=$(cat "${cache_file}")
+        else
+            params=$(kubectl --context ${ctx} get secrets --all-namespaces -o name | awk -F/ '{ if ($2 ~ /^psql-.*/) {print $2} }')
+            mkdir -p "${cache_dir}"
+            echo "${params}" > "${cache_file}"
+        fi
+        COMPREPLY=( $(compgen -W "${params}" -- ${cur}) )
+        return 0
+    fi
+}
+complete -F _rdsql rdsql
+EOF
+  exit 0
+}
+
+if [[ $1 == "completion" ]] ; then
+    case $2 in
+      bash) completion_bash ;; 
+    esac
+fi
+
 set -x
 
 K_SECRET=${1:-"psql-creds-db-main"}
@@ -46,7 +84,6 @@ function login {
     -U ${DB_USERNAME} \
     -d ${DB_DATABASE}
 }
-
 
 credentials $K_SECRET
 login
