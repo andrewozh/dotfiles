@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 
 # FIXME:
 # * custom namespaces for service secret
@@ -31,44 +32,36 @@ EOF
   exit 0
 }
 
-if [[ $1 == "completion" ]] ; then
-    case $2 in
-      bash) completion_bash ;; 
-    esac
-fi
-
-set -x
-
-K_SECRET=${1:-"psql-creds-db-main"}
-
 function credentials {
   local K_SECRET=$1
   case $K_SECRET in
-    psql-creds-db-*)
-      export DB_DATABASE=postgres
-      while IFS=' =' read -r key value ; do
-        value=${value//\"/} # remove the double quotes around the value
-        case "$key" in
-          "host") export DB_HOST=$value ;;
-          "port") export DB_PORT=$value ;;
-          "user") export DB_USERNAME=$value ;;
-          "password") export DB_PASSWORD=$value ;;
-        esac
-      done < <(kubectl get secret -n crossplane $K_SECRET -o jsonpath="{.data}" | \
-        jq -r ".[\"creds.auto.tfvars\"]" | \
-        base64 --decode) ;;
-    *)
-      secret=$(kubectl get secret -n api $K_SECRET -o jsonpath="{.data}")
-      for key in $(echo $secret | jq -r 'keys[]'); do
-          value=$(echo $secret | jq -r ".[\"$key\"]" | base64 --decode)
-          export $key=$value
-      done ;;
+  psql-creds-db-*)
+    export DB_DATABASE=postgres
+    while IFS=' =' read -r key value; do
+      value=${value//\"/} # remove the double quotes around the value
+      case "$key" in
+      "host") export DB_HOST=$value ;;
+      "port") export DB_PORT=$value ;;
+      "user") export DB_USERNAME=$value ;;
+      "password") export DB_PASSWORD=$value ;;
+      esac
+    done < <(kubectl get secret -n crossplane $K_SECRET -o jsonpath="{.data}" |
+      jq -r ".[\"creds.auto.tfvars\"]" |
+      base64 --decode)
+    ;;
+  *)
+    secret=$(kubectl get secret -n api $K_SECRET -o jsonpath="{.data}")
+    for key in $(echo $secret | jq -r 'keys[]'); do
+      value=$(echo $secret | jq -r ".[\"$key\"]" | base64 --decode)
+      export $key=$value
+    done
+    ;;
   esac
 }
 
 function pg_query {
   local query="$1"
-  echo "(SU) -- $1"
+  echo "(SU) -- $1" >&2
   PGPASSWORD=${DB_PASSWORD} psql \
     -h ${DB_HOST} \
     -p ${DB_PORT} \
@@ -85,5 +78,56 @@ function login {
     -d ${DB_DATABASE}
 }
 
-credentials $K_SECRET
-login
+if [[ $1 == "completion" ]]; then
+  case $2 in
+  bash) completion_bash ;;
+  esac
+fi
+while [[ $# -gt 0 ]]; do
+  case $1 in
+  -d | --database)
+    shift
+    export DB_DATABASE_ARG=$1
+    shift
+    ;;
+  -h | --host)
+    shift
+    export DB_HOST_ARG=$1
+    shift
+    ;;
+  -u | --user)
+    shift
+    export DB_USERNAME_ARG=$1
+    shift
+    ;;
+  -p | --port)
+    shift
+    export DB_PORT_ARG=$1
+    shift
+    ;;
+  *)
+    if [[ -z $K_SECRET ]]; then
+      export K_SECRET=$1
+    else
+      if [[ -z $SQL ]]; then
+        SQL=$1
+      else
+        SQL="$SQL $1"
+      fi
+    fi
+    shift
+    ;;
+  esac
+done
+
+credentials ${K_SECRET:-"psql-creds-db-main"}
+DB_DATABASE=${DB_DATABASE_ARG:-$DB_DATABASE}
+DB_HOST=${DB_HOST_ARG:-$DB_HOST}
+DB_PORT=${DB_PORT_ARG:-$DB_PORT}
+DB_USERNAME=${DB_USERNAME_ARG:-$DB_USERNAME}
+
+if [[ -z "$SQL" ]]; then
+  login
+else
+  pg_query "$SQL"
+fi
