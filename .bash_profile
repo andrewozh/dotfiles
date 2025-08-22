@@ -6,3 +6,10 @@ add_path "$HOME/Notes/bin"
 add_path "$HOME/.local/bin"
 add_path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 add_path "/opt/homebrew/opt/curl/bin"
+add_path "/opt/homebrew/opt/curl/bin"
+add_path "/opt/homebrew/bin"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/andrewozh/.lmstudio/bin"
+# End of LM Studio CLI section
+
