@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x
 
 # FIXME:
 # * custom namespaces for service secret
@@ -53,7 +52,7 @@ function credentials {
     secret=$(kubectl get secret -n api $K_SECRET -o jsonpath="{.data}")
     for key in $(echo $secret | jq -r 'keys[]'); do
       value=$(echo $secret | jq -r ".[\"$key\"]" | base64 --decode)
-      export $key=$value
+      export DB_${key#*DB_}=$value
     done
     ;;
   esac
@@ -119,6 +118,8 @@ while [[ $# -gt 0 ]]; do
     ;;
   esac
 done
+
+set -x
 
 credentials ${K_SECRET:-"psql-creds-db-main"}
 DB_DATABASE=${DB_DATABASE_ARG:-$DB_DATABASE}

@@ -19,5 +19,7 @@ yabai -m mouse_drop_action swap
 
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="Tomb Raider" manage=off
+yabai -m rule --add app="Sleeping Dogs" manage=off
 
 yabai -m config focus_follows_mouse autoraise
