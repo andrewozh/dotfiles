@@ -83,6 +83,7 @@ k9s:
     table:
       fgColor: *foreground
       bgColor: *background
+      cursorFgColor: *background
       # Header row styles.
       header:
         fgColor: *foreground
