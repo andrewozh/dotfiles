@@ -1,5 +1,5 @@
 
-format = """$directory$git_branch$fill$aws$kubernetes$terraform$python$direnv
+format = """$directory$git_branch$aws$kubernetes$terraform$python$direnv
 $character"""
 
 [character]
