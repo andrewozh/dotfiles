@@ -4,7 +4,7 @@
 
 # Colors (Gruvbox dark)
 
-[shell]
+[terminal.shell]
 program = "/opt/homebrew/bin/bash"
 
 # Default colors
