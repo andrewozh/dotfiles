@@ -21,5 +21,8 @@ yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="Tomb Raider" manage=off
 yabai -m rule --add app="Sleeping Dogs" manage=off
+yabai -m rule --add app="Elder Scrolls" manage=off
+yabai -m rule --add app="Life" manage=off
+yabai -m rule --add app="tld" manage=off
 
 yabai -m config focus_follows_mouse autoraise
