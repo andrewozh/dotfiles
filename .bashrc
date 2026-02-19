@@ -22,7 +22,12 @@ export EDITOR=nvim
 # export BROWSER="firefox"
 
 export HISTSIZE=25000
-export HISTCONTROL=ignorespace
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="ls:ll:kctx:pwd:bg:fg:history:clear:exit"
+shopt -s histappend
+shopt -s cmdhist
+PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+# export HISTTIMEFORMAT="%F %T "
 
 #export JAVA_HOME="$(/usr/libexec/java_home)"
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.config/tmux/plugins/
@@ -32,7 +37,7 @@ export FX_SHOW_SIZE=true
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-function add_path() { [ -d "$1" ] && export PATH="$1:$PATH" ; }
+function add_path() { [ -d "$1" ] && export PATH="$1:$PATH"; }
 add_path "/opt/homebrew/opt/openjdk/bin"
 add_path "$JAVA_HOME"
 add_path "$HOME/dev/bin"
@@ -82,9 +87,9 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES # for ansible
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 command -v pyenv >/dev/null || add_path "$PYENV_ROOT/bin"
-if which pyenv-virtualenv-init > /dev/null; then
-   eval "$(pyenv init -)";
-   eval "$(pyenv virtualenv-init -)"
+if which pyenv-virtualenv-init >/dev/null; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
 # --------------------- Completions ---------------------
