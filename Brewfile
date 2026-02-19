@@ -1,9 +1,11 @@
+tap "cue-lang/tap"
 tap "derailed/k9s"
 tap "fairwindsops/tap"
 tap "go-task/tap"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
+tap "kcl-lang/tap"
 tap "koekeishiya/formulae"
 tap "kong/deck"
 tap "kreuzwerker/taps"
@@ -12,10 +14,6 @@ tap "siderolabs/tap"
 tap "stefanprodan/tap"
 # Run your GitHub Actions locally
 brew "act", args: ["HEAD"]
-# Core application library for C
-brew "glib"
-# Vector graphics library with cross-device output support
-brew "cairo"
 # GNU compiler collection
 brew "gcc"
 # Interpreted, interactive, object-oriented programming language
@@ -34,6 +32,14 @@ brew "azure-cli"
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Core application library for C
+brew "glib"
+# Vector graphics library with cross-device output support
+brew "cairo"
+# Development kit for the Java programming language
+brew "openjdk"
+# Remove large files or passwords from Git history like git-filter-branch
+brew "bfg"
 # Collection of portable C++ source libraries
 brew "boost"
 # Console Matrix
@@ -48,13 +54,13 @@ brew "difftastic"
 brew "direnv"
 # Lightweight DNS forwarder and DHCP server
 brew "dnsmasq"
+# Isolated development environments using Docker
+brew "docker-compose"
 # Functional metaprogramming aware language built on Erlang VM
 brew "elixir"
-# GNU Transport Layer Security (TLS) Library
-brew "gnutls"
-# C library SSHv1/SSHv2 client and server protocols
-brew "libssh"
-# Play, record, convert, and stream audio and video
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # Fast and Lightweight Logs and Metrics processor
 brew "fluent-bit"
@@ -70,7 +76,9 @@ brew "gh"
 brew "git"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
-# GNU Pretty Good Privacy (PGP) package
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
@@ -92,6 +100,8 @@ brew "htop"
 brew "infracost"
 # CLI wrapper for basic network utilities on macOS - ip command
 brew "iproute2mac"
+# Istio configuration command-line utility
+brew "istioctl"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Domain specific configuration language for defining JSON data
@@ -110,11 +120,13 @@ brew "kubernetes-cli"
 brew "kubeseal"
 # Simple terminal UI for git commands
 brew "lazygit"
+# C library SSHv1/SSHv2 client and server protocols
+brew "libssh"
 # Next-gen compiler infrastructure
 brew "llvm"
 # Run a Kubernetes cluster locally
 brew "minikube"
-# Platform built on V8 to build network applications
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # MongoDB Shell to connect, configure, query, and work with your MongoDB database
 brew "mongosh"
@@ -122,8 +134,6 @@ brew "mongosh"
 brew "ncc"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim", args: ["HEAD"]
-# Development kit for the Java programming language
-brew "openjdk"
 # Drop-in replacement for Terraform. Infrastructure as Code Tool
 brew "opentofu"
 # SDK for building Kubernetes applications
@@ -138,10 +148,14 @@ brew "podman"
 brew "podman-compose"
 # Kubernetes cluster resource sanitizer
 brew "popeye"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Object-relational database system
 brew "postgresql@12"
 # Object-relational database system
 brew "postgresql@16"
+# Drive terraform at terminal velocity
+brew "pug"
 # Python version management
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
@@ -196,27 +210,35 @@ brew "yamllint"
 brew "yarn"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
+# CUE is an open source data constraint language which aims to simplify tasks involving defining and using data.
+brew "cue-lang/tap/cue"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s"
 # Detect deprecated Kubernetes apiVersions
 brew "fairwindsops/tap/pluto"
 # Task runner / simpler Make alternative written in Go
 brew "go-task/tap/go-task"
+# KCL Command Line Interface
+brew "kcl-lang/tap/kcl"
 # A tiling window manager for macOS based on binary space partitioning.
 brew "koekeishiya/formulae/yabai"
 # CLI to support with downloading and compiling terraform providers for Mac with M1 chip.
 brew "kreuzwerker/taps/m1-terraform-provider-helper"
-# Terminal user interface for terraform power users.
-brew "leg100/tap/pug"
 # CLI for out-of-band management of Kubernetes nodes created by Talos
 brew "siderolabs/tap/talosctl"
 # GPU-accelerated terminal emulator
 cask "alacritty"
+# Open source, extensible AI agent that goes beyond code suggestions
+cask "block-goose"
+# Terminal-based AI coding assistant
+cask "claude-code"
 # Column-oriented database management system
 cask "clickhouse"
 cask "font-hack-nerd-font"
 # Web browser
 cask "google-chrome"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "iterm2"
 # Password manager application and digital vault
 cask "keeper-password-manager"
 # Discover, download, and run local LLMs
@@ -229,9 +251,8 @@ cask "obsidian"
 cask "podman-desktop"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
-# Simple menu bar app to view and interact with reminders
-cask "reminders-menubar"
 # Team communication and collaboration software
 cask "slack"
 # Music streaming service
 cask "spotify"
+go "sigs.k8s.io/cloud-provider-kind"
