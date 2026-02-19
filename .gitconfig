@@ -1,8 +1,11 @@
 [user]
 	name = andrewozh
 	email = andrew.ozhegov@gmail.com
+	signingkey = /Users/andrewozh/.ssh/id_ed25519.pub
 [credential]
 	helper = osxkeychain
 
 [includeIf "gitdir:~/dev/intento/"]
   path = ~/.gitconfig.intento
+[gpg]
+	format = ssh
