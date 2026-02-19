@@ -39,11 +39,6 @@
           "cmd": "k9s -n api -c dp --context shared-prod"
         },
         {
-          "name": "az-prod",
-          "dir": "~",
-          "cmd": "k9s -n api -c dp --context az-intento-prod"
-        },
-        {
           "name": "i-devops",
           "dir": "~",
           "cmd": "k9s -n api -c dp --context intento-devops"
