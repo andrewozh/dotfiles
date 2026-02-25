@@ -8,3 +8,4 @@ aliases:
   rb: rbac.authorization.k8s.io/v1/rolebindings
   np: networking.k8s.io/v1/networkpolicies
   er: ephemeralrunners
+  so: keda.sh/v1alpha1/scaledobjects
