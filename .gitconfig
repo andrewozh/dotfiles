@@ -9,3 +9,9 @@
   path = ~/.gitconfig.intento
 [gpg]
 	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = /Users/andrewozh/.ssh/allowed_signers
