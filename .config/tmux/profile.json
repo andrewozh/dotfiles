@@ -49,11 +49,6 @@
       "name": "infra",
       "windows": [
         {
-          "name": "claude",
-          "dir": "~/dev/intento/helm-charts/",
-          "cmd": "claude"
-        },
-        {
           "name": "vim",
           "dir": "~/dev/intento/",
           "cmd": "nvim"
