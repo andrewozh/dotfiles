@@ -2,6 +2,7 @@ tap "cue-lang/tap"
 tap "derailed/k9s"
 tap "fairwindsops/tap"
 tap "go-task/tap"
+tap "gromgit/brewtils"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
@@ -134,8 +135,6 @@ brew "mongosh"
 brew "ncc"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim", args: ["HEAD"]
-# Drop-in replacement for Terraform. Infrastructure as Code Tool
-brew "opentofu"
 # SDK for building Kubernetes applications
 brew "operator-sdk"
 # Swiss-army knife of markup format conversion
@@ -186,18 +185,20 @@ brew "telnet"
 brew "wireshark"
 # Terminal UI for tshark, inspired by Wireshark
 brew "termshark"
-# Thin wrapper for Terraform e.g. for locking state
-brew "terragrunt"
 # Terraform version manager inspired by rbenv
 brew "tfenv"
 # Linter for Terraform files
 brew "tflint"
 # Static analysis security scanner for your terraform code
 brew "tfsec"
+# Terragrunt version manager inspired by tfenv
+brew "tgenv"
 # Terminal multiplexer
 brew "tmux"
 # CPU, RAM memory, and load monitor for use with tmux
 brew "tmux-mem-cpu-load"
+# OpenTofu version manager inspired by tfenv
+brew "tofuenv"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Maintained ctags implementation
@@ -210,14 +211,18 @@ brew "yamllint"
 brew "yarn"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
 # CUE is an open source data constraint language which aims to simplify tasks involving defining and using data.
 brew "cue-lang/tap/cue"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s"
 # Detect deprecated Kubernetes apiVersions
 brew "fairwindsops/tap/pluto"
-# Task runner / simpler Make alternative written in Go
+# A fast, cross-platform build tool inspired by Make, designed for modern workflows.
 brew "go-task/tap/go-task"
+# Interactive TUI for Homebrew
+brew "gromgit/brewtils/taproom"
 # KCL Command Line Interface
 brew "kcl-lang/tap/kcl"
 # A tiling window manager for macOS based on binary space partitioning.
